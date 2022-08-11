@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: dev
+    #指定国际化文件名为i18n
+  messages:
+    basename: i18n/messages
+  jpa:
+    hibernate:
+      use-new-id-generator-mappings: false
+      ddl-auto: update
+
+
+comment.avatar: /images/avatar.png
