@@ -50,7 +50,8 @@ public class LoginController {
     @PostMapping("/login")
     public String login(@RequestParam String username,
                         @RequestParam String password,
-                        HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes){//为什么不用Model？它适用的域只是转发域，重定向会刷掉。
+                        HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes){
+        //为什么不用Model？它适用的域只是转发域，重定向会刷掉。用redirect重定向请求后，model的值被清空了，所以造成了model数据丢失的情况。
 
             User user = userService.findByUsername(username);
             CookieUtils.delete(request, response, "tokenInvalid");
@@ -59,13 +60,13 @@ public class LoginController {
                 return "redirect:/admin";
             }
 
-            if (!user.getPassword().equals(MD5Utils.code(password))) { //密码正确
+            if (!user.getPassword().equals(MD5Utils.code(password))) { //密码不正确
                 attributes.addFlashAttribute("message", "密码错误！");
                 return "redirect:/admin";
             }
             //验证通过
             //生成token
-        System.out.println(user);
+//        System.out.println(user);
             String token = JWTUtils.createToken(user);
             //将token存储在cookie中
             CookieUtils.set(response, "token", token, -1);

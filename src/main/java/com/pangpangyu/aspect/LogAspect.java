@@ -28,7 +28,6 @@ public class LogAspect {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         String url = request.getRequestURL().toString();
-//        String ip = request.getRemoteAddr();
         //String ip = request.getRemoteAddr(); //可能拿不到真实ip
         String ip = IpInfoUtils.getIpAddr(request);
 

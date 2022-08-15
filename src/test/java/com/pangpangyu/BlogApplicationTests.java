@@ -15,7 +15,7 @@ class BlogApplicationTests {
     private RedisUtils redisUtils;
     @Test
     void test() {
-
+        Double.valueOf(200.00);
     }
 
 }
