@@ -1,13 +1,28 @@
 spring:
-  profiles:
-    active: dev
-    #指定国际化文件名为i18n
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+    username: root
+    password: root
   messages:
     basename: i18n/messages
   jpa:
     hibernate:
-      use-new-id-generator-mappings: false
       ddl-auto: update
+    show-sql: true
+#  redis:
+#    host: localhost
+#    port: 6379
+server:
+  port: 80
 
+logging:
+  level:
+    root: info
+    com.lrm: info
 
 comment.avatar: /images/avatar.png
+
+
+
+
